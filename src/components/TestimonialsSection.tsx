@@ -109,7 +109,7 @@ export function TestimonialsSection() {
               <p className="font-heading font-semibold text-gray-900 text-sm">
                 Dilini Fernando
               </p>
-              <p className="text-gray-500 text-xs">Homeowner, Kandy</p>
+              <p className="text-gray-500 text-xs">Homeowner, Piliyandala</p>
             </div>
           </motion.div>
 
@@ -150,7 +150,7 @@ export function TestimonialsSection() {
               <p className="font-heading font-semibold text-gray-900 text-sm">
                 Ruwan Silva
               </p>
-              <p className="text-gray-500 text-xs">Restaurant Owner, Galle</p>
+              <p className="text-gray-500 text-xs">Restaurant Owner, Panadura</p>
             </div>
           </motion.div>
         </div>
