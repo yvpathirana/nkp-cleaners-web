@@ -27,8 +27,8 @@ export function HomePage() {
 
       {/* Hero */}
       <HeroSection
-        title="Shine Beyond the Surface."
-        subtitle="Premium cleaning services for homes, offices, and industrial spaces. We deliver spotless results with professional-grade equipment and trained staff."
+        title="Professional Cleaning Services in Piliyandala and Nearby Areas"
+        subtitle="NKP Cleaners provides reliable cleaning for homes, apartments, offices, and commercial properties across Piliyandala, Colombo, Panadura, Horana, and nearby areas. Tell us what needs cleaning and where you are located, and we’ll provide a tailored quotation."
         showBookingButtons
         backgroundVariant="gradient" />
 
@@ -58,11 +58,11 @@ export function HomePage() {
               What We Offer
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Our Professional Services
+              Cleaning Services for Homes and Businesses
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              From everyday cleaning to specialized deep-cleaning solutions, we
-              have you covered.
+              Choose the service that matches your property, then contact our
+              team for availability across the Piliyandala–Colombo–Panadura corridor.
             </p>
           </motion.div>
 

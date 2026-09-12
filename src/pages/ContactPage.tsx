@@ -38,7 +38,7 @@ export function ContactPage() {
             <div className="space-y-6">
               <a
                 href="tel:+94707699620"
-                onClick={() => trackCallClick()}
+                onClick={() => trackCallClick('contact_card')}
                 className="flex items-start gap-4 bg-gray-50 rounded-2xl p-5 hover:bg-blue-50 transition-colors group"
               >
                 <div className="w-12 h-12 bg-brand-primary/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-brand-primary/20 transition-colors">
@@ -58,7 +58,7 @@ export function ContactPage() {
                 href="https://wa.me/94707699620?text=Hello%20NKP%20Cleaners%2C%20I%20would%20like%20to%20get%20a%20quote."
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackWhatsAppClick()}
+                onClick={() => trackWhatsAppClick('contact_card')}
                 className="flex items-start gap-4 bg-gray-50 rounded-2xl p-5 hover:bg-green-50 transition-colors group"
               >
                 <div className="w-12 h-12 bg-brand-whatsapp/10 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-brand-whatsapp/20 transition-colors">

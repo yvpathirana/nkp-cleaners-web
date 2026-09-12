@@ -11,6 +11,7 @@ export const EMAIL = 'nkpcleaners@gmail.com';
 export const FACEBOOK_URL = 'https://www.facebook.com/NKPCleaners/';
 export const GOOGLE_URL = 'https://share.google/cUjKwPiDKjbGtWMhT';
 export const WHATSAPP_URL = `https://wa.me/${PHONE.replace('+', '')}`;
+const SCHEMA_AREA_NAMES = [...serviceAreas.map((area) => area.name), 'Horana'];
 
 export interface RouteSeoData {
   path: string;
@@ -41,7 +42,7 @@ function localBusiness(): object {
     '@type': 'LocalBusiness',
     name: SITE_NAME,
     description:
-      'Professional cleaning services in Sri Lanka. Residential, commercial, industrial, and specialized cleaning solutions.',
+      'Residential, commercial, and specialized cleaning services across Piliyandala, Colombo, Panadura, Horana, and nearby areas.',
     url: SITE_URL,
     telephone: PHONE,
     image: `${SITE_URL}/nkp.jpg`,
@@ -51,11 +52,11 @@ function localBusiness(): object {
       addressRegion: 'Sri Lanka',
     },
     priceRange: '$$',
-    openingHours: 'Mo-Sa 07:00-19:00',
+    openingHours: 'Mo-Sa 09:00-17:00',
     sameAs: [WHATSAPP_URL, FACEBOOK_URL, GOOGLE_URL],
-    areaServed: serviceAreas.map((area) => ({
+    areaServed: SCHEMA_AREA_NAMES.map((areaName) => ({
       '@type': 'City',
-      name: area.name,
+      name: areaName,
       containedInPlace: {
         '@type': 'Country',
         name: 'Sri Lanka',
@@ -138,10 +139,14 @@ function serviceSchema(
       url: SITE_URL,
       telephone: PHONE,
     },
-    areaServed: {
-      '@type': 'Country',
-      name: 'Sri Lanka',
-    },
+    areaServed: SCHEMA_AREA_NAMES.map((areaName) => ({
+      '@type': 'City',
+      name: areaName,
+      containedInPlace: {
+        '@type': 'Country',
+        name: 'Sri Lanka',
+      },
+    })),
     serviceType: serviceName,
   };
 }
@@ -151,7 +156,8 @@ function contactPage(): object {
     '@context': 'https://schema.org',
     '@type': 'ContactPage',
     name: `Contact ${SITE_NAME}`,
-    description: 'Contact NKP Cleaners for a free cleaning quote in Sri Lanka.',
+    description:
+      'Contact NKP Cleaners for a cleaning quotation in Piliyandala, Colombo, Panadura, Horana, and nearby areas.',
     url: `${SITE_URL}/contact`,
     mainEntity: {
       '@type': 'LocalBusiness',
@@ -166,11 +172,11 @@ function contactPage(): object {
 export const routeSeoData: Record<string, RouteSeoData> = {
   '/': {
     path: '/',
-    title: 'Professional Cleaning Services in Sri Lanka',
+    title: 'Cleaning Services in Piliyandala & Colombo',
     description:
-      'NKP Cleaners offers premium residential, commercial, industrial, and specialized cleaning services across Sri Lanka. Get a free quote today.',
+      'Professional home, office, deep cleaning, sofa cleaning, and pressure washing across Piliyandala, Colombo, and Panadura. Request a free quote.',
     keywords:
-      'cleaning services Sri Lanka, office cleaning, home cleaning, pressure washing, carpet cleaning, NKP Cleaners',
+      'cleaning services Piliyandala, cleaning services Colombo, cleaning services Panadura, home cleaning, office cleaning, deep cleaning, sofa cleaning, pressure washing, NKP Cleaners',
     schemas: [
       localBusiness(),
       organization(),
@@ -269,13 +275,13 @@ export const routeSeoData: Record<string, RouteSeoData> = {
     path: '/services/specialized',
     title: 'Specialized Cleaning Services',
     description:
-      'Specialized cleaning services in Sri Lanka: carpets, sofas, windows, post-construction, green cleaning, and vehicle detailing by NKP Cleaners.',
+      'Specialized cleaning services in Sri Lanka: carpets, sofas, mattresses, windows, post-construction, and green cleaning by NKP Cleaners.',
     keywords:
       'specialized cleaning, carpet cleaning, sofa cleaning, window cleaning, post construction cleaning, green cleaning, Sri Lanka',
     schemas: [
       serviceSchema(
         'Specialized Cleaning Services',
-        'Specialty cleaning including carpet, sofa, window, post-construction, green, and vehicle cleaning.',
+        'Specialty cleaning including carpet, sofa, mattress, window, post-construction, and green cleaning.',
       ),
       breadcrumbs([
         { name: 'Home', path: '/' },
@@ -450,7 +456,7 @@ export const routeSeoData: Record<string, RouteSeoData> = {
     path: '/contact',
     title: 'Contact Us',
     description:
-      'Contact NKP Cleaners for a free cleaning quote in Sri Lanka. Call, WhatsApp, or fill out our form. We respond within 24 hours.',
+      'Contact NKP Cleaners for a cleaning quote in Piliyandala, Colombo, Panadura, Horana, and nearby areas. Call or message us on WhatsApp.',
     keywords:
       'contact NKP Cleaners, cleaning quote, cleaning service inquiry, Sri Lanka',
     schemas: [

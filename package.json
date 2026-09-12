@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "npx vite",
-    "build": "npx vite build && npx tsx scripts/prerender-seo.ts",
+    "build": "npx vite build && node --import tsx scripts/prerender-seo.ts",
+    "check:seo": "node --import tsx scripts/validate-seo.ts",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "preview": "npx vite preview"
   },

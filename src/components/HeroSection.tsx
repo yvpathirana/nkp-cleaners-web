@@ -118,7 +118,7 @@ export function HeroSection({
 
               <a
               href="tel:+94707699620"
-              onClick={() => trackCallClick()}
+              onClick={() => trackCallClick('hero')}
               className="inline-flex items-center gap-2 border-2 border-white/20 hover:border-white/40 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors backdrop-blur-sm">
 
                 <PhoneIcon className="w-5 h-5" />
@@ -128,7 +128,7 @@ export function HeroSection({
               href="https://wa.me/94707699620?text=Hello%20NKP%20Cleaners%2C%20I%20would%20like%20to%20get%20a%20quote."
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackWhatsAppClick()}
+              onClick={() => trackWhatsAppClick('hero')}
               className="inline-flex items-center gap-2 bg-brand-whatsapp hover:bg-green-600 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-brand-whatsapp/25">
 
                 <MessageCircleIcon className="w-5 h-5" />

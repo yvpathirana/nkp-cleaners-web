@@ -1,6 +1,7 @@
 import { SITE_NAME, SITE_URL } from './seoConfig';
 import { serviceAreas, areaKeywords, type ServiceArea } from './serviceAreas';
 import type { RouteSeoData } from './seoConfig';
+import { piliyandalaFaqs } from './localContent';
 
 export { serviceAreas, areaKeywords };
 export type { ServiceArea, RouteSeoData };
@@ -10,12 +11,7 @@ export function buildAreaSeo(area: ServiceArea): RouteSeoData {
   const title = `Cleaning Services in ${area.name}`;
   const description = area.description;
 
-  return {
-    path,
-    title,
-    description,
-    keywords: areaKeywords(area.name),
-    schemas: [
+  const schemas: object[] = [
       {
         '@context': 'https://schema.org',
         '@type': 'Service',
@@ -61,7 +57,29 @@ export function buildAreaSeo(area: ServiceArea): RouteSeoData {
           },
         ],
       },
-    ],
+    ];
+
+  if (area.slug === 'piliyandala') {
+    schemas.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: piliyandalaFaqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    });
+  }
+
+  return {
+    path,
+    title,
+    description,
+    keywords: areaKeywords(area.name),
+    schemas,
   };
 }
 
