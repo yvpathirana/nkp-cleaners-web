@@ -7,6 +7,7 @@ import {
   MessageCircleIcon } from
 'lucide-react';
 import { FACEBOOK_URL, GOOGLE_URL } from '../seo/seoConfig';
+import { trackCallClick, trackWhatsAppClick } from '../utils/analytics';
 export function Footer() {
   return (
     <footer className="bg-brand-dark border-t border-white/5">
@@ -30,9 +31,8 @@ export function Footer() {
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mt-4">
-              Professional cleaning services you can trust. We deliver spotless
-              results for homes, offices, and industrial spaces across Sri
-              Lanka.
+              Professional cleaning for homes, offices, and commercial spaces
+              across Piliyandala, Colombo, Panadura, Horana, and nearby areas.
             </p>
           </div>
 
@@ -143,6 +143,7 @@ export function Footer() {
               <li>
                 <a
                   href="tel:+94707699620"
+                  onClick={() => trackCallClick('footer')}
                   className="flex items-center gap-3 text-gray-400 hover:text-brand-primary text-sm transition-colors">
 
                   <PhoneIcon className="w-4 h-4 shrink-0" />
@@ -154,6 +155,7 @@ export function Footer() {
                   href="https://wa.me/94707699620?text=Hello%20NKP%20Cleaners%2C%20I%20would%20like%20to%20get%20a%20quote."
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackWhatsAppClick('footer')}
                   className="flex items-center gap-3 text-gray-400 hover:text-brand-whatsapp text-sm transition-colors">
 
                   <MessageCircleIcon className="w-4 h-4 shrink-0" />
@@ -240,7 +242,7 @@ export function Footer() {
             © {new Date().getFullYear()} NKP Cleaners. All rights reserved.
           </p>
           <p className="text-gray-500 text-xs">
-            Professional Cleaning Services · Sri Lanka
+            Professional Cleaning Services · Piliyandala to Colombo and Panadura
           </p>
         </div>
       </div>

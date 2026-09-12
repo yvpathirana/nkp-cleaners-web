@@ -28,7 +28,7 @@ export function FloatingButtons() {
         href="https://wa.me/94707699620?text=Hello%20NKP%20Cleaners%2C%20I%20would%20like%20to%20get%20a%20quote."
         target="_blank"
         rel="noopener noreferrer"
-        onClick={() => trackWhatsAppClick()}
+        onClick={() => trackWhatsAppClick('floating_button')}
         className="group flex items-center gap-3 bg-brand-whatsapp hover:bg-green-600 text-white rounded-full shadow-lg shadow-brand-whatsapp/30 hover:shadow-xl hover:shadow-brand-whatsapp/40 transition-all duration-300"
         aria-label="Chat on WhatsApp">
 
@@ -58,7 +58,7 @@ export function FloatingButtons() {
           ease: 'easeOut'
         }}
         href="tel:+94707699620"
-        onClick={() => trackCallClick()}
+        onClick={() => trackCallClick('floating_button')}
         className="group flex items-center gap-3 bg-brand-primary hover:bg-blue-600 text-white rounded-full shadow-lg shadow-brand-primary/30 hover:shadow-xl hover:shadow-brand-primary/40 transition-all duration-300"
         aria-label="Call Now">
 

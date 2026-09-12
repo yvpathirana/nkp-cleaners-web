@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import {
   CheckCircleIcon,
-  HardHatIcon,
   LayersIcon,
   HomeIcon,
   CrownIcon,

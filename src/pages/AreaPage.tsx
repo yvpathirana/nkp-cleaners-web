@@ -16,6 +16,7 @@ import { BookingCTA } from '../components/BookingCTA';
 import { SITE_NAME } from '../seo/seoConfig';
 import { getAreaBySlug } from '../seo/serviceAreas';
 import { buildAreaSeo } from '../seo/areaSeo';
+import { piliyandalaFaqs, piliyandalaNearbyAreas } from '../seo/localContent';
 
 const areaServices = [
   {
@@ -69,6 +70,89 @@ const areaServices = [
   },
 ];
 
+function PiliyandalaLocalContent() {
+  return (
+    <section className="bg-gray-50 py-20" aria-labelledby="piliyandala-local-heading">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+          <div>
+            <span className="inline-block text-brand-primary text-sm font-medium tracking-wide uppercase mb-2">
+              Local cleaning support
+            </span>
+            <h2
+              id="piliyandala-local-heading"
+              className="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-5"
+            >
+              Cleaning in Piliyandala and nearby areas
+            </h2>
+            <p className="text-gray-600 leading-relaxed mb-7">
+              Whether you need a one-time deep clean, upholstery cleaning,
+              pressure washing, or regular cleaning for a home or workplace,
+              start by sharing your location and the work required. We will
+              confirm availability and provide a quotation based on the job.
+            </p>
+
+            <h3 className="font-heading text-lg font-semibold text-gray-900 mb-3">
+              Nearby service areas
+            </h3>
+            <div className="flex flex-wrap gap-3">
+              {piliyandalaNearbyAreas.map((nearbyArea) => (
+                <Link
+                  key={nearbyArea.slug}
+                  to={`/service-areas/${nearbyArea.slug}`}
+                  className="inline-flex items-center gap-2 bg-white border border-gray-200 hover:border-brand-primary hover:text-brand-primary text-gray-700 px-4 py-2 rounded-full text-sm font-medium transition-colors"
+                >
+                  <MapPinIcon className="w-3.5 h-3.5" />
+                  {nearbyArea.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-white border border-gray-100 rounded-2xl p-7">
+            <h3 className="font-heading text-xl font-bold text-gray-900 mb-5">
+              How to request your quotation
+            </h3>
+            <ol className="space-y-5">
+              {[
+                ['1', 'Share the job', 'Tell us the service, location, property size, and current condition.'],
+                ['2', 'Confirm the scope', 'Send photos when possible so the team can understand the work required.'],
+                ['3', 'Arrange the service', 'Review the quotation and confirm a suitable date with the NKP team.'],
+              ].map(([number, title, description]) => (
+                <li key={number} className="flex items-start gap-4">
+                  <span className="w-8 h-8 rounded-full bg-brand-primary text-white flex items-center justify-center text-sm font-bold shrink-0">
+                    {number}
+                  </span>
+                  <span>
+                    <strong className="block text-gray-900 text-sm">{title}</strong>
+                    <span className="block text-gray-600 text-sm mt-1">{description}</span>
+                  </span>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+
+        <div className="mt-14">
+          <h2 className="font-heading text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+            Cleaning services in Piliyandala: common questions
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {piliyandalaFaqs.map((faq) => (
+              <article key={faq.question} className="bg-white border border-gray-100 rounded-2xl p-6">
+                <h3 className="font-heading font-semibold text-gray-900 mb-3">
+                  {faq.question}
+                </h3>
+                <p className="text-gray-600 text-sm leading-relaxed">{faq.answer}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function AreaPage() {
   const { areaSlug } = useParams<{ areaSlug: string }>();
   const area = areaSlug ? getAreaBySlug(areaSlug) : undefined;
@@ -96,6 +180,7 @@ export function AreaPage() {
   }
 
   const seoData = buildAreaSeo(area);
+  const isPiliyandala = area.slug === 'piliyandala';
 
   return (
     <>
@@ -103,7 +188,9 @@ export function AreaPage() {
 
       <HeroSection
         title={`Cleaning Services in ${area.name}`}
-        subtitle={`${SITE_NAME} provides professional home, office, deep, sofa, mattress, carpet cleaning, and pressure washing in ${area.name} and nearby suburbs.`}
+        subtitle={isPiliyandala
+          ? `${SITE_NAME} provides cleaning for homes, apartments, offices, and commercial properties across Piliyandala, Kesbewa, Bokundara, Madapatha, and Boralesgamuwa.`
+          : `${SITE_NAME} provides professional home, office, deep, sofa, mattress, carpet cleaning, and pressure washing in ${area.name} and nearby suburbs.`}
         showBookingButtons
         backgroundVariant="gradient"
       />
@@ -211,6 +298,8 @@ export function AreaPage() {
           </motion.div>
         </div>
       </section>
+
+      {isPiliyandala && <PiliyandalaLocalContent />}
 
       <BookingCTA />
     </>

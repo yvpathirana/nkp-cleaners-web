@@ -4,7 +4,7 @@
 declare global {
   interface Window {
     gtag: (...args: unknown[]) => void;
-    dataLayer: Record<string, unknown>[];
+    dataLayer: unknown[];
   }
 }
 
@@ -20,7 +20,7 @@ export function initGA4(): void {
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = function (...args: unknown[]) {
-    window.dataLayer.push(Object.fromEntries(args.map((a, i) => [i, a])));
+    window.dataLayer.push(args);
   };
 
   const script = document.createElement('script');
@@ -67,29 +67,73 @@ export function trackEvent(
   }
 }
 
-// Pre-defined event helpers
-export function trackCallClick(): void {
-  trackEvent('call_click', {
+const serviceNamesByPath: Record<string, string> = {
+  '/': 'all_cleaning_services',
+  '/services': 'all_cleaning_services',
+  '/services/residential': 'residential_cleaning',
+  '/services/commercial': 'commercial_cleaning',
+  '/services/industrial': 'industrial_cleaning',
+  '/services/specialized': 'specialized_cleaning',
+  '/home-cleaning': 'home_cleaning',
+  '/office-cleaning': 'office_cleaning',
+  '/pressure-washing': 'pressure_washing',
+  '/sofa-mattress-cleaning': 'sofa_mattress_cleaning',
+  '/carpet-cleaning': 'carpet_cleaning',
+  '/deep-cleaning-packages': 'deep_cleaning',
+  '/floor-restoration': 'floor_restoration',
+  '/post-construction-cleaning': 'post_construction_cleaning',
+  '/packages': 'cleaning_packages',
+};
+
+function pageContext(): Record<string, string> {
+  if (typeof window === 'undefined') {
+    return {};
+  }
+
+  const pagePath = window.location.pathname;
+  const context: Record<string, string> = { page_path: pagePath };
+  const areaMatch = pagePath.match(/^\/service-areas\/([^/]+)$/);
+
+  if (areaMatch) {
+    context.location_name = decodeURIComponent(areaMatch[1]).replace(/-/g, '_');
+  }
+
+  if (serviceNamesByPath[pagePath]) {
+    context.service_name = serviceNamesByPath[pagePath];
+  }
+
+  return context;
+}
+
+// Conversion events used by the local SEO measurement plan.
+export function trackCallClick(ctaPosition = 'unspecified'): void {
+  trackEvent('click_phone', {
+    ...pageContext(),
+    cta_position: ctaPosition,
     method: 'phone',
     phone_number: '+94707699620'
   });
 }
 
-export function trackWhatsAppClick(): void {
-  trackEvent('whatsapp_click', {
+export function trackWhatsAppClick(ctaPosition = 'unspecified'): void {
+  trackEvent('click_whatsapp', {
+    ...pageContext(),
+    cta_position: ctaPosition,
     method: 'whatsapp',
     phone_number: '+94707699620'
   });
 }
 
 export function trackFormSubmit(formName: string): void {
-  trackEvent('form_submit', {
+  trackEvent('lead_form_submit', {
+    ...pageContext(),
     form_name: formName
   });
 }
 
 export function trackBookNowClick(source: string): void {
-  trackEvent('book_now_click', {
-    source
+  trackEvent('quote_request', {
+    ...pageContext(),
+    cta_position: source
   });
 }

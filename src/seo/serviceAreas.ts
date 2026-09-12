@@ -15,7 +15,7 @@ export const serviceAreas: ServiceArea[] = [
     name: 'Piliyandala',
     slug: 'piliyandala',
     description:
-      'Reliable home, office, and specialized cleaning services in Piliyandala. Book NKP Cleaners for deep cleaning, sofa cleaning, mattress cleaning, and pressure washing.',
+      'NKP Cleaners provides professional cleaning for homes, apartments, offices, and commercial properties in Piliyandala and nearby areas including Kesbewa, Bokundara, Madapatha, and Boralesgamuwa.',
   },
   {
     name: 'Boralesgamuwa',
@@ -102,10 +102,10 @@ export const serviceAreas: ServiceArea[] = [
       'Local cleaning professionals in Kahathuduwa. Home cleaning, deep cleaning, sofa cleaning, mattress cleaning, and pressure washing.',
   },
   {
-    name: 'Bandagama',
-    slug: 'bandagama',
+    name: 'Bandaragama',
+    slug: 'bandaragama',
     description:
-      'NKP Cleaners provides trusted cleaning services in Bandagama, including deep cleaning, sofa cleaning, mattress cleaning, and pressure washing.',
+      'NKP Cleaners provides trusted cleaning services in Bandaragama, including deep cleaning, sofa cleaning, mattress cleaning, and pressure washing.',
   },
   {
     name: 'Panadura',
