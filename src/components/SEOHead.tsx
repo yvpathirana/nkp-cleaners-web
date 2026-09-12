@@ -1,72 +1,107 @@
-import React, { useEffect, createElement } from 'react';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import {
+  RouteSeoData,
+  SITE_NAME,
+  SITE_URL,
+  DEFAULT_OG_IMAGE,
+  OG_IMAGE_WIDTH,
+  OG_IMAGE_HEIGHT,
+  TWITTER_HANDLE,
+} from '../seo/seoConfig';
+
 interface SEOHeadProps {
-  title: string;
-  description: string;
-  keywords?: string;
+  data: RouteSeoData;
 }
-export function SEOHead({ title, description, keywords }: SEOHeadProps) {
+
+function setOrCreateMeta(
+  attribute: 'name' | 'property',
+  value: string,
+  content: string,
+): void {
+  const selector =
+    attribute === 'property'
+      ? `meta[property="${value}"]`
+      : `meta[name="${value}"]`;
+  let el = document.querySelector(selector) as HTMLMetaElement | null;
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute(attribute, value);
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', content);
+}
+
+function removeMeta(attribute: 'name' | 'property', value: string): void {
+  document
+    .querySelectorAll(`meta[${attribute}="${value}"]`)
+    .forEach((el) => el.remove());
+}
+
+export function SEOHead({ data }: SEOHeadProps) {
+  const location = useLocation();
+  const canonicalPath = data.path === '/' ? '' : data.path;
+  const canonicalUrl = `${SITE_URL}${canonicalPath}`;
+  const ogImage = data.ogImage || DEFAULT_OG_IMAGE;
+  const fullTitle = `${data.title} | ${SITE_NAME}`;
+
   useEffect(() => {
-    document.title = `${title} | NKP Cleaners`;
-    // Meta description
-    let metaDesc = document.querySelector('meta[name="description"]');
-    if (!metaDesc) {
-      metaDesc = document.createElement('meta');
-      metaDesc.setAttribute('name', 'description');
-      document.head.appendChild(metaDesc);
-    }
-    metaDesc.setAttribute('content', description);
-    // Meta keywords
-    if (keywords) {
-      let metaKeywords = document.querySelector('meta[name="keywords"]');
-      if (!metaKeywords) {
-        metaKeywords = document.createElement('meta');
-        metaKeywords.setAttribute('name', 'keywords');
-        document.head.appendChild(metaKeywords);
-      }
-      metaKeywords.setAttribute('content', keywords);
-    }
-    // JSON-LD Schema for LocalBusiness
-    const existingSchema = document.querySelector(
-      'script[data-schema="local-business"]'
-    );
-    if (existingSchema) existingSchema.remove();
-    const schema = document.createElement('script');
-    schema.type = 'application/ld+json';
-    schema.setAttribute('data-schema', 'local-business');
-    schema.textContent = JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'LocalBusiness',
-      name: 'NKP Cleaners',
-      description:
-      'Professional cleaning services in Sri Lanka. Residential, commercial, industrial, and specialized cleaning.',
-      url: window.location.origin,
-      telephone: '+94707699620',
-      image: "/nkp.jpg",
+    document.title = fullTitle;
 
-      address: {
-        '@type': 'PostalAddress',
-        addressCountry: 'LK',
-        addressRegion: 'Sri Lanka'
-      },
-      priceRange: '$$',
-      openingHours: 'Mo-Sa 07:00-19:00',
-      sameAs: ['https://wa.me/94707699620'],
-      serviceType: [
-      'Residential Cleaning',
-      'Commercial Cleaning',
-      'Industrial Cleaning',
-      'Pressure Washing',
-      'Carpet Cleaning',
-      'Office Cleaning']
+    // Core meta
+    setOrCreateMeta('name', 'description', data.description);
+    if (data.keywords) {
+      setOrCreateMeta('name', 'keywords', data.keywords);
+    } else {
+      removeMeta('name', 'keywords');
+    }
 
+    // Robots directive
+    if (data.noIndex) {
+      setOrCreateMeta('name', 'robots', 'noindex, nofollow');
+    } else {
+      removeMeta('name', 'robots');
+    }
+
+    // Canonical link
+    let canonical = document.querySelector(
+      'link[rel="canonical"]',
+    ) as HTMLLinkElement | null;
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.setAttribute('rel', 'canonical');
+      document.head.appendChild(canonical);
+    }
+    canonical.setAttribute('href', canonicalUrl);
+
+    // Open Graph
+    setOrCreateMeta('property', 'og:type', 'website');
+    setOrCreateMeta('property', 'og:site_name', SITE_NAME);
+    setOrCreateMeta('property', 'og:url', canonicalUrl);
+    setOrCreateMeta('property', 'og:title', fullTitle);
+    setOrCreateMeta('property', 'og:description', data.description);
+    setOrCreateMeta('property', 'og:image', ogImage);
+    setOrCreateMeta('property', 'og:image:width', String(OG_IMAGE_WIDTH));
+    setOrCreateMeta('property', 'og:image:height', String(OG_IMAGE_HEIGHT));
+    setOrCreateMeta('property', 'og:image:alt', `${SITE_NAME} logo`);
+
+    // Twitter Card
+    setOrCreateMeta('name', 'twitter:card', 'summary_large_image');
+    setOrCreateMeta('name', 'twitter:site', TWITTER_HANDLE);
+    setOrCreateMeta('name', 'twitter:title', fullTitle);
+    setOrCreateMeta('name', 'twitter:description', data.description);
+    setOrCreateMeta('name', 'twitter:image', ogImage);
+
+    // JSON-LD structured data
+    document.querySelectorAll('script[data-seo-schema]').forEach((el) => el.remove());
+    data.schemas?.forEach((schema, index) => {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.setAttribute('data-seo-schema', `schema-${index}`);
+      script.textContent = JSON.stringify(schema);
+      document.head.appendChild(script);
     });
-    document.head.appendChild(schema);
-    return () => {
-      const schemaToRemove = document.querySelector(
-        'script[data-schema="local-business"]'
-      );
-      if (schemaToRemove) schemaToRemove.remove();
-    };
-  }, [title, description, keywords]);
+  }, [data, location.pathname, canonicalUrl, fullTitle, ogImage]);
+
   return null;
 }

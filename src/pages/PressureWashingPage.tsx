@@ -1,31 +1,28 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import {
-  CheckCircleIcon,
   WindIcon,
   HomeIcon,
   BuildingIcon,
-  CarIcon,
   FactoryIcon,
+  SquareIcon,
   ZapIcon,
   DropletIcon,
   ShieldCheckIcon } from
 'lucide-react';
 import { SEOHead } from '../components/SEOHead';
+import { routeSeoData } from '../seo/seoConfig';
 import { HeroSection } from '../components/HeroSection';
+import { AreasWeServe } from '../components/AreasWeServe';
 import { BookingCTA } from '../components/BookingCTA';
 export function PressureWashingPage() {
   return (
     <>
-      <SEOHead
-        title="Pressure Washing Services"
-        description="Professional pressure washing services by NKP Cleaners. Restore driveways, walls, roofs, and outdoor surfaces in Sri Lanka."
-        keywords="pressure washing, power washing, driveway cleaning, exterior cleaning, Sri Lanka, NKP Cleaners" />
+      <SEOHead data={routeSeoData['/pressure-washing']} />
 
 
       <HeroSection
         title="Pressure Washing Services"
-        subtitle="Blast away years of dirt, grime, mold, and stains. Our high-pressure cleaning restores surfaces to their original condition."
+        subtitle="Powerful high-pressure cleaning with a 3600 PSI, 4 GPM machine. Blast away years of dirt, grime, mold, and stains from driveways, walls, garages, and outdoor surfaces."
         showBookingButtons
         backgroundVariant="gradient" />
 
@@ -79,11 +76,10 @@ export function PressureWashingPage() {
 
               <HomeIcon className="w-8 h-8 text-brand-primary mb-3" />
               <h3 className="font-heading font-semibold text-gray-900 mb-2">
-                Driveways & Pathways
+                Residential Exterior Pressure Washing
               </h3>
               <p className="text-gray-600 text-sm">
-                Remove oil stains, moss, and years of built-up grime from
-                concrete and paving.
+                Clean home exteriors, paths, and outdoor areas with controlled pressure that protects surfaces.
               </p>
             </motion.div>
 
@@ -107,11 +103,10 @@ export function PressureWashingPage() {
 
               <BuildingIcon className="w-8 h-8 text-brand-primary mb-3" />
               <h3 className="font-heading font-semibold text-gray-900 mb-2">
-                Walls & Facades
+                Commercial Pressure Washing
               </h3>
               <p className="text-gray-600 text-sm">
-                Restore building exteriors, removing dirt, algae, and weather
-                staining.
+                High-pressure cleaning for shops, offices, showrooms, and commercial building exteriors.
               </p>
             </motion.div>
 
@@ -133,13 +128,12 @@ export function PressureWashingPage() {
               }}
               className="bg-gray-50 rounded-2xl p-6">
 
-              <WindIcon className="w-8 h-8 text-brand-primary mb-3" />
+              <SquareIcon className="w-8 h-8 text-brand-primary mb-3" />
               <h3 className="font-heading font-semibold text-gray-900 mb-2">
-                Roofs & Gutters
+                Driveways & Paved Areas
               </h3>
               <p className="text-gray-600 text-sm">
-                Clean roof tiles and gutters to prevent water damage and improve
-                appearance.
+                Remove oil stains, moss, algae, and built-up grime from concrete, paving, and asphalt.
               </p>
             </motion.div>
 
@@ -161,13 +155,12 @@ export function PressureWashingPage() {
               }}
               className="bg-gray-50 rounded-2xl p-6">
 
-              <CarIcon className="w-8 h-8 text-brand-primary mb-3" />
+              <FactoryIcon className="w-8 h-8 text-brand-primary mb-3" />
               <h3 className="font-heading font-semibold text-gray-900 mb-2">
-                Parking Areas
+                Garages & Parking Areas
               </h3>
               <p className="text-gray-600 text-sm">
-                Clean parking lots and garages, removing oil, tire marks, and
-                debris.
+                Clean garages, parking lots, and loading bays, removing oil, tire marks, and debris.
               </p>
             </motion.div>
 
@@ -189,13 +182,12 @@ export function PressureWashingPage() {
               }}
               className="bg-gray-50 rounded-2xl p-6">
 
-              <FactoryIcon className="w-8 h-8 text-brand-primary mb-3" />
+              <WindIcon className="w-8 h-8 text-brand-primary mb-3" />
               <h3 className="font-heading font-semibold text-gray-900 mb-2">
-                Industrial Floors
+                Walls & Exterior Areas
               </h3>
               <p className="text-gray-600 text-sm">
-                Heavy-duty cleaning for factory floors, loading docks, and
-                warehouse surfaces.
+                Restore walls, facades, and exterior surfaces by removing dirt, algae, and weather staining.
               </p>
             </motion.div>
 
@@ -219,15 +211,18 @@ export function PressureWashingPage() {
 
               <DropletIcon className="w-8 h-8 text-brand-primary mb-3" />
               <h3 className="font-heading font-semibold text-gray-900 mb-2">
-                Pool Decks & Patios
+                Outdoor Hard Surfaces
               </h3>
               <p className="text-gray-600 text-sm">
-                Safely clean pool surrounds and outdoor entertainment areas.
+                Clean patios, pool decks, walkways, courtyards, and other outdoor hard surfaces.
               </p>
             </motion.div>
           </div>
         </div>
       </section>
+
+      {/* Areas We Serve */}
+      <AreasWeServe serviceName="Pressure washing" />
 
       {/* Before/After Concept */}
       <section className="bg-brand-dark py-20">

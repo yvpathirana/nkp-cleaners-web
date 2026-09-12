@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -8,8 +8,8 @@ import {
   HomeIcon,
   BuildingIcon,
   FactoryIcon,
-  SparklesIcon } from
-'lucide-react';
+  SparklesIcon
+} from 'lucide-react';
 const serviceDropdownItems = [
 {
   label: 'Residential Cleaning',
@@ -41,6 +41,14 @@ const navLinks = [
   label: 'Services',
   path: '/services',
   hasDropdown: true
+},
+{
+  label: 'Packages',
+  path: '/packages'
+},
+{
+  label: 'Service Areas',
+  path: '/service-areas'
 },
 {
   label: 'Contact',
@@ -104,7 +112,7 @@ export function Header() {
 
                 <Link
                 to={link.path}
-                className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${location.pathname.startsWith('/services') && link.path === '/services' ? 'text-brand-primary bg-brand-primary/10' : location.pathname === link.path ? 'text-brand-primary bg-brand-primary/10' : 'text-gray-300 hover:text-white hover:bg-white/5'}`}>
+                className={`flex items-center gap-1 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${(location.pathname.startsWith('/services') && link.path === '/services') || (location.pathname.startsWith('/service-areas') && link.path === '/service-areas') ? 'text-brand-primary bg-brand-primary/10' : location.pathname === link.path ? 'text-brand-primary bg-brand-primary/10' : 'text-gray-300 hover:text-white hover:bg-white/5'}`}>
 
                   {link.label}
                   {link.hasDropdown &&
@@ -163,7 +171,7 @@ export function Header() {
               to="/contact"
               className="ml-4 bg-brand-primary hover:bg-blue-600 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-colors">
 
-              Get a Quote
+              Contact Us
             </Link>
           </div>
 
@@ -218,6 +226,13 @@ export function Header() {
                   All Services
                 </Link>
 
+                <Link
+                to="/packages"
+                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${location.pathname === '/packages' ? 'text-brand-primary bg-brand-primary/10' : 'text-gray-300 hover:text-white hover:bg-white/5'}`}>
+
+                  Packages
+                </Link>
+
                 {serviceDropdownItems.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -233,6 +248,13 @@ export function Header() {
               })}
 
                 <Link
+                to="/service-areas"
+                className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${location.pathname === '/service-areas' || location.pathname.startsWith('/service-areas/') ? 'text-brand-primary bg-brand-primary/10' : 'text-gray-300 hover:text-white hover:bg-white/5'}`}>
+
+                  Service Areas
+                </Link>
+
+                <Link
                 to="/contact"
                 className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${location.pathname === '/contact' ? 'text-brand-primary bg-brand-primary/10' : 'text-gray-300 hover:text-white hover:bg-white/5'}`}>
 
@@ -244,7 +266,7 @@ export function Header() {
                   to="/contact"
                   className="block text-center bg-brand-primary hover:bg-blue-600 text-white text-sm font-semibold px-5 py-3 rounded-xl transition-colors">
 
-                    Get a Quote
+                    Contact Us
                   </Link>
                 </div>
               </div>

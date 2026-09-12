@@ -1,6 +1,5 @@
-// Google Analytics 4 & Google Tag Manager tracking utility
-// Replace 'G-XXXXXXXXXX' with your actual GA4 Measurement ID
-// Replace 'GTM-XXXXXXX' with your actual GTM Container ID
+// Google Analytics 4 tracking utility
+// Set VITE_GA_MEASUREMENT_ID in your environment to override the default ID.
 
 declare global {
   interface Window {
@@ -9,57 +8,61 @@ declare global {
   }
 }
 
-const GA4_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+const GA4_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || 'G-MV74XWEE5H';
+
+let isInitialized = false;
 
 export function initGA4(): void {
-  // Load GA4 script
-  const script = document.createElement('script');
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`;
-  document.head.appendChild(script);
+  if (isInitialized || typeof document === 'undefined') {
+    return;
+  }
+  isInitialized = true;
 
   window.dataLayer = window.dataLayer || [];
   window.gtag = function (...args: unknown[]) {
     window.dataLayer.push(Object.fromEntries(args.map((a, i) => [i, a])));
   };
 
+  const script = document.createElement('script');
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_MEASUREMENT_ID}`;
+  document.head.appendChild(script);
+
   window.gtag('js', new Date());
-  window.gtag('config', GA4_MEASUREMENT_ID);
+  window.gtag('config', GA4_MEASUREMENT_ID, {
+    send_page_view: false
+  });
 }
 
-export function initGTM(): void {
-  const GTM_ID = 'GTM-XXXXXXX';
+export function trackPageView(path?: string, title?: string): void {
+  if (typeof window.gtag !== 'function') {
+    return;
+  }
 
-  // GTM script
-  const script = document.createElement('script');
-  script.innerHTML = `
-    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','${GTM_ID}');
-  `;
-  document.head.insertBefore(script, document.head.firstChild);
+  const pagePath = path ?? window.location.pathname + window.location.search;
+  const pageTitle = title ?? document.title;
+
+  window.gtag('event', 'page_view', {
+    page_path: pagePath,
+    page_title: pageTitle,
+    page_location: window.location.href,
+    send_to: GA4_MEASUREMENT_ID
+  });
+
+  if (import.meta.env.DEV) {
+    console.log('[Analytics] page_view', { page_path: pagePath, page_title: pageTitle });
+  }
 }
 
 export function trackEvent(
-eventName: string,
-params?: Record<string, string | number | boolean>)
-: void {
-  // GA4 event
+  eventName: string,
+  params?: Record<string, string | number | boolean>
+): void {
   if (typeof window.gtag === 'function') {
     window.gtag('event', eventName, params);
   }
 
-  // GTM dataLayer push
-  window.dataLayer = window.dataLayer || [];
-  window.dataLayer.push({
-    event: eventName,
-    ...params
-  });
-
-  // Console log in development
-  if (process.env.NODE_ENV === 'development') {
+  if (import.meta.env.DEV) {
     console.log(`[Analytics] Event: ${eventName}`, params);
   }
 }

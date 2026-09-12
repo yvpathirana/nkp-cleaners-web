@@ -1,25 +1,66 @@
-import React from 'react';
 import { motion } from 'framer-motion';
+import type { LucideIcon } from 'lucide-react';
 import {
   CheckCircleIcon,
-  HomeIcon,
   SparklesIcon,
   ShieldCheckIcon,
   HeartIcon,
-  ArrowRightLeftIcon,
   SearchIcon,
-  BrushIcon } from
+  BrushIcon,
+  UtensilsIcon,
+  DropletIcon,
+  EyeIcon,
+  SquareIcon,
+  SofaIcon } from
 'lucide-react';
 import { SEOHead } from '../components/SEOHead';
+
+interface HomeServiceCardProps {
+  icon: LucideIcon;
+  title: string;
+  items: string[];
+  highlight?: boolean;
+}
+
+function HomeServiceCard({ icon: Icon, title, items, highlight }: HomeServiceCardProps) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4 }}
+      className={`bg-gray-50 rounded-2xl p-6 border ${highlight ? 'border-2 border-brand-primary relative' : 'border-gray-100'}`}
+    >
+      {highlight && (
+        <span className="absolute -top-3 left-6 bg-brand-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
+          Most Popular
+        </span>
+      )}
+      <div className="w-12 h-12 bg-brand-primary/10 rounded-xl flex items-center justify-center mb-4">
+        <Icon className="w-6 h-6 text-brand-primary" />
+      </div>
+      <h3 className="font-heading font-semibold text-gray-900 text-lg mb-3">
+        {title}
+      </h3>
+      <ul className="space-y-2">
+        {items.map((item) => (
+          <li key={item} className="flex items-start gap-2 text-gray-600 text-sm">
+            <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </motion.div>
+  );
+}
+import { routeSeoData } from '../seo/seoConfig';
 import { HeroSection } from '../components/HeroSection';
+import { AreasWeServe } from '../components/AreasWeServe';
 import { BookingCTA } from '../components/BookingCTA';
 export function HomeCleaningPage() {
   return (
     <>
-      <SEOHead
-        title="Home & Apartment Cleaning Services"
-        description="Professional home and apartment cleaning by NKP Cleaners. General cleaning, deep cleaning, and move-in/move-out services in Sri Lanka."
-        keywords="home cleaning, apartment cleaning, deep cleaning, move-in cleaning, residential cleaning, Sri Lanka" />
+      <SEOHead data={routeSeoData['/home-cleaning']} />
 
 
       <HeroSection
@@ -50,215 +91,112 @@ export function HomeCleaningPage() {
             className="text-center mb-14">
 
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Choose Your Cleaning Type
+              What&apos;s Included
             </h2>
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              We offer tailored cleaning packages to match your specific needs
-              and budget.
+              Our house and apartment cleaning covers every corner of your home
+              with professional equipment and trained staff.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* General Cleaning */}
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 20
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0
-              }}
-              viewport={{
-                once: true
-              }}
-              transition={{
-                duration: 0.4
-              }}
-              className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-
-              <div className="w-12 h-12 bg-brand-primary/10 rounded-xl flex items-center justify-center mb-4">
-                <BrushIcon className="w-6 h-6 text-brand-primary" />
-              </div>
-              <h3 className="font-heading font-semibold text-gray-900 text-lg mb-2">
-                General Cleaning
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                Regular maintenance cleaning to keep your home fresh, tidy, and
-                welcoming every day.
-              </p>
-              <ul className="space-y-2">
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  Dusting & wiping surfaces
-                </li>
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  Floor sweeping & mopping
-                </li>
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  Bathroom cleaning
-                </li>
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  Kitchen tidying
-                </li>
-              </ul>
-            </motion.div>
-
-            {/* Deep Cleaning */}
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 20
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0
-              }}
-              viewport={{
-                once: true
-              }}
-              transition={{
-                duration: 0.4,
-                delay: 0.1
-              }}
-              className="bg-gray-50 rounded-2xl p-6 border-2 border-brand-primary relative">
-
-              <span className="absolute -top-3 left-6 bg-brand-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
-                Most Popular
-              </span>
-              <div className="w-12 h-12 bg-brand-primary/10 rounded-xl flex items-center justify-center mb-4">
-                <SearchIcon className="w-6 h-6 text-brand-primary" />
-              </div>
-              <h3 className="font-heading font-semibold text-gray-900 text-lg mb-2">
-                Deep Cleaning
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                Intensive cleaning that reaches every corner, removing built-up
-                grime, stains, and allergens.
-              </p>
-              <ul className="space-y-2">
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  Everything in General +
-                </li>
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  Behind furniture & appliances
-                </li>
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  Grout & tile scrubbing
-                </li>
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  Window tracks & sills
-                </li>
-              </ul>
-            </motion.div>
-
-            {/* Move-In/Out */}
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 20
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0
-              }}
-              viewport={{
-                once: true
-              }}
-              transition={{
-                duration: 0.4,
-                delay: 0.2
-              }}
-              className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-
-              <div className="w-12 h-12 bg-brand-primary/10 rounded-xl flex items-center justify-center mb-4">
-                <ArrowRightLeftIcon className="w-6 h-6 text-brand-primary" />
-              </div>
-              <h3 className="font-heading font-semibold text-gray-900 text-lg mb-2">
-                Move-In / Move-Out
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                Complete cleaning for when you're transitioning between homes —
-                leave or arrive to a spotless space.
-              </p>
-              <ul className="space-y-2">
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  Full property deep clean
-                </li>
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  Cabinet & closet interiors
-                </li>
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  Appliance cleaning
-                </li>
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  Sanitization throughout
-                </li>
-              </ul>
-            </motion.div>
-
-            {/* Apartment Deep Cleaning */}
-            <motion.div
-              initial={{
-                opacity: 0,
-                y: 20
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0
-              }}
-              viewport={{
-                once: true
-              }}
-              transition={{
-                duration: 0.4,
-                delay: 0.3
-              }}
-              className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-
-              <div className="w-12 h-12 bg-brand-primary/10 rounded-xl flex items-center justify-center mb-4">
-                <HomeIcon className="w-6 h-6 text-brand-primary" />
-              </div>
-              <h3 className="font-heading font-semibold text-gray-900 text-lg mb-2">
-                Apartment Deep Clean
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-4">
-                Specialized deep cleaning tailored for apartments and
-                condominiums of all sizes.
-              </p>
-              <ul className="space-y-2">
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  Compact space expertise
-                </li>
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  Balcony & patio cleaning
-                </li>
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  AC vent dusting
-                </li>
-                <li className="flex items-start gap-2 text-gray-600 text-sm">
-                  <CheckCircleIcon className="w-4 h-4 text-brand-primary shrink-0 mt-0.5" />
-                  Full sanitization
-                </li>
-              </ul>
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <HomeServiceCard
+              icon={BrushIcon}
+              title="General Residential Cleaning"
+              items={[
+                'Dusting & surface wiping',
+                'Floor sweeping, mopping & washing',
+                'Bathroom & washroom cleaning',
+                'Kitchen tidying',
+              ]}
+            />
+            <HomeServiceCard
+              icon={SearchIcon}
+              title="Deep Cleaning"
+              highlight
+              items={[
+                'Everything in general cleaning',
+                'Behind furniture & appliances',
+                'Grout & tile scrubbing',
+                'Window tracks & sills',
+              ]}
+            />
+            <HomeServiceCard
+              icon={UtensilsIcon}
+              title="Kitchen Cleaning"
+              items={[
+                'Countertop & cabinet cleaning',
+                'Appliance exterior cleaning',
+                'Sink & cooking area degreasing',
+                'Food-preparation sanitization',
+              ]}
+            />
+            <HomeServiceCard
+              icon={DropletIcon}
+              title="Washroom Cleaning"
+              items={[
+                'Toilet, sink & fixture cleaning',
+                'Scale & stain removal',
+                'Shower/tile scrubbing',
+                'Disinfection of contact surfaces',
+              ]}
+            />
+            <HomeServiceCard
+              icon={EyeIcon}
+              title="Glass & Window Cleaning"
+              items={[
+                'Streak-free window glass',
+                'Mirror & glass-panel cleaning',
+                'Frame & track wipe-down',
+                'Improved natural light',
+              ]}
+            />
+            <HomeServiceCard
+              icon={SquareIcon}
+              title="Floor Care"
+              items={[
+                'Sweeping & mopping',
+                'Hard-floor washing',
+                'Spot stain treatment',
+                'High-temperature floor sterilization',
+              ]}
+            />
+            <HomeServiceCard
+              icon={SofaIcon}
+              title="Bed & Sofa Vacuuming"
+              items={[
+                'Mattress surface vacuuming',
+                'Sofa & cushion vacuuming',
+                'Dust, hair & debris removal',
+                'Upholstered surface refresh',
+              ]}
+            />
+            <HomeServiceCard
+              icon={ShieldCheckIcon}
+              title="High-Touch Sanitization"
+              items={[
+                'Door handles & light switches',
+                'Handrails & remotes',
+                'Switchboards & table edges',
+                'Safe, family-friendly products',
+              ]}
+            />
+            <HomeServiceCard
+              icon={SparklesIcon}
+              title="High-Temperature Sterilization"
+              items={[
+                'Steam-based floor treatment',
+                'Bacteria & germ reduction',
+                'No harsh chemicals required',
+                'Ideal for kitchens & bathrooms',
+              ]}
+            />
           </div>
         </div>
       </section>
+
+      {/* Areas We Serve */}
+      <AreasWeServe serviceName="Home & apartment cleaning" />
 
       {/* Why Choose Us */}
       <section className="bg-gray-50 py-20">

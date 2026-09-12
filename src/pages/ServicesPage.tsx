@@ -1,6 +1,6 @@
-import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import type { LucideIcon } from 'lucide-react';
 import {
   HomeIcon,
   BuildingIcon,
@@ -8,40 +8,38 @@ import {
   SparklesIcon,
   BrushIcon,
   SofaIcon,
-  CarIcon,
-  LeafIcon,
-  HardHatIcon,
+  BedDoubleIcon,
+  DropletIcon,
+  ShieldCheckIcon,
+  UsersIcon,
   WindIcon,
   WashingMachineIcon,
   LayoutGridIcon,
   UtensilsIcon,
-  LandmarkIcon,
-  StoreIcon,
   WarehouseIcon,
   CogIcon,
   SquareIcon,
-  ArrowRightLeftIcon,
   SearchIcon,
   ClockIcon,
   EyeIcon,
-  TruckIcon,
+  ArrowUpIcon,
   ChevronRightIcon,
-  ArrowLeftIcon,
-  BoxIcon } from
-'lucide-react';
+  ArrowLeftIcon
+} from 'lucide-react';
 import { SEOHead } from '../components/SEOHead';
+import { routeSeoData } from '../seo/seoConfig';
 import { HeroSection } from '../components/HeroSection';
 import { BookingCTA } from '../components/BookingCTA';
 interface SubService {
   title: string;
   description: string;
-  icon: BoxIcon;
+  icon: LucideIcon;
   link?: string;
 }
 interface ServiceCategory {
   slug: string;
   label: string;
-  icon: BoxIcon;
+  icon: LucideIcon;
   tagline: string;
   description: string;
   subServices: SubService[];
@@ -49,81 +47,140 @@ interface ServiceCategory {
 const categories: ServiceCategory[] = [
 {
   slug: 'residential',
-  label: 'Residential Cleaning',
+  label: 'House & Apartment Cleaning',
   icon: HomeIcon,
   tagline: 'Home & Living Spaces',
   description:
-  'Professional cleaning services designed to keep your home spotless, healthy, and comfortable. From regular upkeep to intensive deep cleans.',
+  'Complete residential cleaning for houses, apartments, and condominiums. From everyday tidying to intensive deep cleans and sanitization.',
   subServices: [
   {
-    title: 'General Cleaning',
+    title: 'General Residential Cleaning',
     description:
-    'Regular maintenance cleaning including dusting, vacuuming, mopping, surface wiping, and bathroom tidying to keep your home fresh and welcoming every day.',
+    'Regular maintenance cleaning including dusting, surface wiping, floor sweeping, mopping, and washroom tidying to keep your home fresh every day.',
     icon: BrushIcon,
     link: '/home-cleaning'
   },
   {
     title: 'Deep Cleaning',
     description:
-    'Intensive top-to-bottom cleaning that reaches behind furniture, inside appliances, scrubs grout and tiles, and eliminates built-up grime, allergens, and bacteria.',
+    'Intensive top-to-bottom cleaning that targets built-up grime, hidden dirt, kitchen grease, washroom scale, and high-touch surfaces.',
     icon: SearchIcon,
     link: '/home-cleaning'
   },
   {
-    title: 'Move-In / Move-Out Cleaning',
+    title: 'Kitchen Cleaning',
     description:
-    "Complete property cleaning for when you're transitioning between homes. Includes cabinet interiors, appliance cleaning, full sanitization, and making the space ready for the next occupant.",
-    icon: ArrowRightLeftIcon,
+    'Detailed kitchen cleaning covering countertops, cabinets, appliances, sinks, and cooking areas for a hygienic food-preparation space.',
+    icon: UtensilsIcon,
     link: '/home-cleaning'
   },
   {
-    title: 'Apartment Deep Cleaning',
+    title: 'Washroom Cleaning',
     description:
-    'Specialized deep cleaning tailored for apartments and condominiums, including balcony cleaning, AC vent dusting, compact space expertise, and full sanitization.',
-    icon: BuildingIcon,
+    'Thorough washroom and toilet cleaning with scale removal, fixture polishing, and disinfection of all contact surfaces.',
+    icon: DropletIcon,
     link: '/home-cleaning'
   },
   {
-    title: 'Routine Cleaning',
+    title: 'Glass & Window Cleaning',
     description:
-    'Scheduled recurring cleaning on a daily, weekly, or bi-weekly basis to maintain a consistently clean and healthy living environment without the hassle.',
-    icon: ClockIcon,
+    'Streak-free cleaning of windows, glass panels, and mirrors to brighten rooms and improve natural light.',
+    icon: EyeIcon,
+    link: '/home-cleaning'
+  },
+  {
+    title: 'Floor Sweeping, Mopping & Washing',
+    description:
+    'Hard-floor and tiled floor care including sweeping, mopping, scrubbing, and spot washing for a spotless finish.',
+    icon: SquareIcon,
+    link: '/home-cleaning'
+  },
+  {
+    title: 'Bed & Sofa Vacuuming',
+    description:
+    'Vacuuming of beds, sofas, cushions, and upholstered surfaces to remove dust, hair, and surface debris.',
+    icon: SofaIcon,
+    link: '/home-cleaning'
+  },
+  {
+    title: 'High-Touch Surface Sanitization',
+    description:
+    'Disinfection of door handles, light switches, handrails, remotes, and other frequently touched household surfaces.',
+    icon: ShieldCheckIcon,
+    link: '/home-cleaning'
+  },
+  {
+    title: 'High-Temperature Floor Sterilization',
+    description:
+    'Steam-based high-temperature floor treatment that kills bacteria and sanitizes hard floors without harsh chemicals.',
+    icon: SparklesIcon,
     link: '/home-cleaning'
   }]
 
 },
 {
   slug: 'commercial',
-  label: 'Commercial Cleaning',
+  label: 'Office & Commercial Cleaning',
   icon: BuildingIcon,
   tagline: 'Business & Professional Spaces',
   description:
-  'Keep your business environment clean, professional, and welcoming for employees and customers. Tailored solutions for every commercial space.',
+  'Professional cleaning for offices, showrooms, and commercial buildings. We keep workspaces healthy, productive, and welcoming.',
   subServices: [
   {
-    title: 'Office Cleaning',
+    title: 'Office Area Cleaning',
     description:
-    'Comprehensive cleaning for offices of all sizes — desks, floors, restrooms, kitchens, reception areas, and meeting rooms. Available daily, weekly, or on custom schedules.',
+    'Cleaning of workstations, desks, cabins, meeting rooms, pantries, and reception areas tailored to office environments.',
     icon: LayoutGridIcon,
     link: '/office-cleaning'
   },
   {
-    title: 'Showrooms',
+    title: 'Common-Area Cleaning',
     description:
-    'Spotless showroom cleaning that ensures your products and displays shine. We clean floors, glass surfaces, display units, and customer areas to make the right first impression.',
-    icon: StoreIcon
+    'Maintenance of lobbies, waiting areas, corridors, and shared spaces to create a positive impression for staff and visitors.',
+    icon: UsersIcon,
+    link: '/office-cleaning'
   },
   {
-    title: 'Restaurants',
+    title: 'Staircase Cleaning',
     description:
-    'Kitchen deep cleaning, dining area maintenance, exhaust hood cleaning, and sanitization that meets food safety and hygiene standards. Keep your restaurant inspection-ready.',
-    icon: UtensilsIcon
+    'Sweeping, mopping, and handrail disinfection for staircases and stepped access areas.',
+    icon: ArrowUpIcon,
+    link: '/office-cleaning'
   },
   {
-    title: 'Banks & Institutions',
+    title: 'Lift Cleaning & Sanitization',
     description:
-    'Professional cleaning for banking halls, government offices, educational institutions, and customer-facing areas. Discreet, thorough, and scheduled around your operating hours.',
-    icon: LandmarkIcon
+    'Cleaning and sanitization of elevator cabins, buttons, handrails, and lobby lift areas.',
+    icon: BuildingIcon,
+    link: '/office-cleaning'
+  },
+  {
+    title: 'Glass, Windows & Partitions',
+    description:
+    'Streak-free cleaning of interior glass partitions, windows, and reflective surfaces for a bright, professional look.',
+    icon: EyeIcon,
+    link: '/office-cleaning'
+  },
+  {
+    title: 'Perimeter/Common-Area Cleaning',
+    description:
+    'External entrance areas, parking surroundings, walkways, and perimeter spaces kept neat and litter-free.',
+    icon: SquareIcon,
+    link: '/office-cleaning'
+  },
+  {
+    title: 'Customized Commercial Plans',
+    description:
+    'Tailored cleaning schedules and task lists designed around your business hours, traffic, and hygiene requirements.',
+    icon: CogIcon,
+    link: '/office-cleaning'
+  },
+  {
+    title: 'Daily/Weekly/Monthly Contracts',
+    description:
+    'Flexible recurring cleaning contracts to maintain consistent cleanliness with minimal disruption.',
+    icon: ClockIcon,
+    link: '/office-cleaning'
   }]
 
 },
@@ -133,32 +190,31 @@ const categories: ServiceCategory[] = [
   icon: FactoryIcon,
   tagline: 'Heavy-Duty & Industrial Facilities',
   description:
-  'Heavy-duty cleaning solutions for factories, warehouses, and industrial facilities using professional-grade equipment and trained operators.',
+  'Heavy-duty cleaning for warehouses, factories, and large commercial premises using professional equipment and trained operators.',
   subServices: [
   {
-    title: 'Warehouse Cleaning',
+    title: 'Larger-Scale Premises Cleaning',
     description:
-    'Large-scale cleaning for warehouses, storage facilities, and distribution centers. Includes floor cleaning, racking dusting, loading dock maintenance, and debris removal.',
+    'Comprehensive cleaning of sizable facilities including production floors, storage halls, and operational buildings.',
+    icon: BuildingIcon
+  },
+  {
+    title: 'Warehouse/Commercial-Area Cleaning',
+    description:
+    'Large-scale cleaning for warehouses and commercial spaces including floor cleaning, racking dusting, and debris removal.',
     icon: WarehouseIcon
   },
   {
-    title: 'Machinery Cleaning',
+    title: 'Machine-Assisted Floor Cleaning',
     description:
-    'Specialized cleaning and degreasing for industrial machinery, production equipment, and manufacturing lines. Extends equipment life and maintains safety standards.',
+    'Industrial floor scrubbing, sweeping, and washing with machine equipment for concrete, epoxy, and tiled surfaces.',
     icon: CogIcon
   },
   {
-    title: 'Floor Scrubbing & Polishing',
+    title: 'Recurring Industrial Contracts',
     description:
-    'Industrial-grade floor scrubbing, stripping, polishing, and sealing for concrete, epoxy, tile, and vinyl surfaces. Restores appearance and improves safety.',
-    icon: SquareIcon
-  },
-  {
-    title: 'Industrial Pressure Washing',
-    description:
-    'High-pressure cleaning for building exteriors, parking areas, loading docks, factory floors, and industrial surfaces. Removes oil, grease, grime, and weather staining.',
-    icon: WindIcon,
-    link: '/pressure-washing'
+    'Scheduled daily, weekly, or monthly cleaning contracts to maintain safety and hygiene standards continuously.',
+    icon: ClockIcon
   }]
 
 },
@@ -168,51 +224,47 @@ const categories: ServiceCategory[] = [
   icon: SparklesIcon,
   tagline: 'Expert & Specialty Cleaning',
   description:
-  'Expert cleaning for specific surfaces and situations. From delicate fabrics to post-construction sites, we have the tools and expertise for every challenge.',
+  'Advanced cleaning for upholstery, floors, carpets, exteriors, and post-construction sites using specialist tools and techniques.',
   subServices: [
   {
-    title: 'Carpet Cleaning',
+    title: 'Sofa & Upholstery Cleaning',
     description:
-    'Deep extraction carpet cleaning using hot water and specialized solutions. Removes embedded dirt, stains, pet odors, allergens, and dust mites. Suitable for all carpet types.',
-    icon: WashingMachineIcon,
-    link: '/carpet-cleaning'
-  },
-  {
-    title: 'Sofa Cleaning',
-    description:
-    'Professional upholstery and sofa cleaning for fabric, leather, and synthetic materials. Deep stain removal, deodorizing, and sanitization to refresh your furniture.',
+    'Dry vacuuming, chemical treatment, wet extraction, multiple rinse cycles, steam sanitization, and upholstery refresh.',
     icon: SofaIcon,
     link: '/sofa-mattress-cleaning'
   },
   {
-    title: 'Window Cleaning',
+    title: 'Mattress Cleaning',
     description:
-    'Streak-free window cleaning for residential, commercial, and high-rise buildings. Interior and exterior glass, frames, tracks, and sills — crystal clear results guaranteed.',
-    icon: EyeIcon
+    'Vacuuming, shampoo/deep cleaning, and steam sanitization to remove dust mites, allergens, and odors.',
+    icon: BedDoubleIcon,
+    link: '/sofa-mattress-cleaning'
   },
   {
-    title: 'Post-Construction Cleaning',
+    title: 'Carpet Cleaning',
     description:
-    'Complete cleanup after renovation or construction projects. Removes dust, debris, paint splatters, adhesive residue, and construction waste to make your space move-in ready.',
-    icon: HardHatIcon
+    'Carpet shampooing, wet/deep extraction cleaning, and targeted dirt and stain treatment for all carpet types.',
+    icon: WashingMachineIcon,
+    link: '/carpet-cleaning'
   },
   {
-    title: 'Green Eco-Friendly Cleaning',
+    title: 'Pressure Washing',
     description:
-    'Environmentally conscious cleaning using biodegradable, non-toxic products that are safe for children, pets, and the planet — without compromising on cleaning power.',
-    icon: LeafIcon
+    'Residential and commercial exterior pressure washing using a 3600 PSI, 4 GPM machine. Driveways, paved areas, walls, and outdoor hard surfaces.',
+    icon: WindIcon,
+    link: '/pressure-washing'
   },
   {
-    title: 'Vehicle Interior Cleaning',
+    title: 'Floor Cleaning & Machine Scrubbing',
     description:
-    'Detailed interior cleaning for cars, vans, SUVs, and commercial vehicles. Includes seat shampooing, dashboard cleaning, carpet extraction, and odor removal.',
-    icon: CarIcon
+    'Floor scrubbing, washing, and machine scrubbing for hard floors in residential, commercial, and industrial spaces.',
+    icon: SquareIcon
   },
   {
-    title: 'Car Wash & Detailing',
+    title: 'Tile Cleaning & Buffing',
     description:
-    'Complete exterior wash and professional detailing services including waxing, polishing, tire dressing, and paint protection for a showroom-quality finish.',
-    icon: TruckIcon
+    'Deep tile cleaning and machine buffing/polishing to restore shine and remove embedded grime.',
+    icon: LayoutGridIcon
   }]
 
 }];
@@ -223,16 +275,12 @@ export function ServicesPage() {
   }>();
   const navigate = useNavigate();
   const activeCategory = categories.find((c) => c.slug === category);
+  const seoConfig =
+    (category && routeSeoData[`/services/${category}`]) ||
+    routeSeoData['/services'];
   return (
     <>
-      <SEOHead
-        title={activeCategory ? activeCategory.label : 'Our Cleaning Services'}
-        description={
-        activeCategory ?
-        activeCategory.description :
-        "Explore NKP Cleaners' full range of professional cleaning services: residential, commercial, industrial, and specialized cleaning in Sri Lanka."
-        }
-        keywords="cleaning services, residential cleaning, commercial cleaning, industrial cleaning, carpet cleaning, pressure washing, Sri Lanka" />
+      <SEOHead data={seoConfig} />
 
 
       <HeroSection

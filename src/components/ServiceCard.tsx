@@ -1,11 +1,10 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { BoxIcon } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 interface ServiceCardProps {
   title: string;
   description: string;
-  icon: BoxIcon;
+  icon: LucideIcon;
   link?: string;
 }
 export function ServiceCard({

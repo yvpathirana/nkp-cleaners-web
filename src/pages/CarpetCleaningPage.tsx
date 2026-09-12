@@ -9,16 +9,14 @@ import {
   ClockIcon,
 } from "lucide-react";
 import { SEOHead } from "../components/SEOHead";
+import { routeSeoData } from "../seo/seoConfig";
 import { HeroSection } from "../components/HeroSection";
+import { AreasWeServe } from "../components/AreasWeServe";
 import { BookingCTA } from "../components/BookingCTA";
 export function CarpetCleaningPage() {
   return (
     <>
-      <SEOHead
-        title="Carpet Cleaning Services"
-        description="Professional carpet cleaning by NKP Cleaners. Deep extraction, stain removal, and sanitization for all carpet types in Sri Lanka."
-        keywords="carpet cleaning, carpet stain removal, deep carpet cleaning, rug cleaning, Sri Lanka, NKP Cleaners"
-      />
+      <SEOHead data={routeSeoData["/carpet-cleaning"]} />
 
       <HeroSection
         title="Carpet Cleaning Services"
@@ -63,43 +61,37 @@ export function CarpetCleaningPage() {
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700">
-                    Wall-to-wall carpet deep cleaning
+                    Carpet shampooing for surface dirt and freshening
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700">
-                    Area rug and runner cleaning
+                    Wet/deep extraction cleaning for embedded grime
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700">
-                    Stubborn stain and spot treatment
+                    Targeted dirt and stain treatment
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700">
-                    Pet stain and odor removal
+                    Wall-to-wall and area rug cleaning
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700">
-                    Allergen and dust mite extraction
+                    Residential and office carpet cleaning
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700">
-                    Anti-bacterial sanitization treatment
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
-                  <span className="text-gray-700">
-                    Commercial and office carpet cleaning
+                    Allergen, dust mite, and odor reduction
                   </span>
                 </li>
               </ul>
@@ -126,34 +118,34 @@ export function CarpetCleaningPage() {
               <div className="bg-gray-50 rounded-2xl p-6 text-center">
                 <WashingMachineIcon className="w-8 h-8 text-brand-primary mx-auto mb-3" />
                 <p className="font-heading font-semibold text-gray-900 text-sm">
-                  Hot Water Extraction
+                  Carpet Shampooing
                 </p>
                 <p className="text-gray-500 text-xs mt-1">
-                  Deep cleaning method
+                  Surface dirt removal
                 </p>
               </div>
               <div className="bg-gray-50 rounded-2xl p-6 text-center">
                 <DropletIcon className="w-8 h-8 text-brand-primary mx-auto mb-3" />
                 <p className="font-heading font-semibold text-gray-900 text-sm">
-                  Stain Treatment
+                  Deep Extraction
                 </p>
                 <p className="text-gray-500 text-xs mt-1">
-                  Specialized solutions
+                  Wet extraction cleaning
                 </p>
               </div>
               <div className="bg-gray-50 rounded-2xl p-6 text-center">
                 <ShieldCheckIcon className="w-8 h-8 text-brand-primary mx-auto mb-3" />
                 <p className="font-heading font-semibold text-gray-900 text-sm">
-                  Sanitization
+                  Stain Treatment
                 </p>
                 <p className="text-gray-500 text-xs mt-1">
-                  Anti-bacterial finish
+                  Dirt and spot removal
                 </p>
               </div>
               <div className="bg-gray-50 rounded-2xl p-6 text-center">
                 <ClockIcon className="w-8 h-8 text-brand-primary mx-auto mb-3" />
                 <p className="font-heading font-semibold text-gray-900 text-sm">
-                  Quick Drying
+                  Fast Drying
                 </p>
                 <p className="text-gray-500 text-xs mt-1">Minimal downtime</p>
               </div>
@@ -161,6 +153,9 @@ export function CarpetCleaningPage() {
           </div>
         </div>
       </section>
+
+      {/* Areas We Serve */}
+      <AreasWeServe serviceName="Carpet cleaning" />
 
       {/* Benefits */}
       <section className="bg-gray-50 py-20">

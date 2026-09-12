@@ -1,26 +1,21 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import {
   CheckCircleIcon,
   SofaIcon,
   BedDoubleIcon,
-  SparklesIcon,
-  ShieldCheckIcon,
   BugIcon,
   DropletIcon,
-  WindIcon,
   HeartIcon } from
 'lucide-react';
 import { SEOHead } from '../components/SEOHead';
+import { routeSeoData } from '../seo/seoConfig';
 import { HeroSection } from '../components/HeroSection';
+import { AreasWeServe } from '../components/AreasWeServe';
 import { BookingCTA } from '../components/BookingCTA';
 export function SofaMattressCleaningPage() {
   return (
     <>
-      <SEOHead
-        title="Sofa & Mattress Cleaning Services"
-        description="Professional sofa, mattress, and upholstery cleaning by NKP Cleaners. Deep sanitization, stain removal, and allergen elimination in Sri Lanka."
-        keywords="sofa cleaning, mattress cleaning, upholstery cleaning, fabric cleaning, stain removal, Sri Lanka, NKP Cleaners" />
+      <SEOHead data={routeSeoData['/sofa-mattress-cleaning']} />
 
 
       <HeroSection
@@ -93,31 +88,31 @@ export function SofaMattressCleaningPage() {
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700 text-sm">
-                    Fabric, leather, and synthetic upholstery
+                    Dry vacuuming to remove surface dust and debris
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700 text-sm">
-                    Deep stain and spot removal
+                    Chemical application/treatment for stains and oils
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700 text-sm">
-                    Odor elimination and deodorizing
+                    Wet extraction with multiple rinse cycles until water is clean
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700 text-sm">
-                    Cushion and armrest deep cleaning
+                    Steam sanitization for fabric, leather, and synthetics
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700 text-sm">
-                    Dining chairs and office chairs
+                    Sofas, armchairs, recliners, dining chairs, and office chairs
                   </span>
                 </li>
               </ul>
@@ -157,31 +152,31 @@ export function SofaMattressCleaningPage() {
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700 text-sm">
-                    Single, double, queen, and king mattresses
+                    Thorough vacuuming of mattress surface and sides
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700 text-sm">
-                    Dust mite and allergen removal
+                    Shampoo/deep cleaning for stain and sweat removal
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700 text-sm">
-                    Stain treatment and extraction
+                    Steam sanitization to kill dust mites and bacteria
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700 text-sm">
-                    Anti-bacterial sanitization
+                    All sizes: single, double, queen, and king
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700 text-sm">
-                    Fresh scent deodorizing treatment
+                    Allergen and odor reduction for healthier sleep
                   </span>
                 </li>
               </ul>
@@ -189,6 +184,9 @@ export function SofaMattressCleaningPage() {
           </div>
         </div>
       </section>
+
+      {/* Areas We Serve */}
+      <AreasWeServe serviceName="Sofa and mattress cleaning" />
 
       {/* Why Clean */}
       <section className="bg-brand-dark py-20">

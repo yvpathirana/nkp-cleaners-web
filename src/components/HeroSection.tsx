@@ -1,15 +1,13 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
 import {
   PhoneIcon,
   MessageCircleIcon,
-  CalendarIcon,
   SparklesIcon } from
 'lucide-react';
 import {
   trackCallClick,
-  trackWhatsAppClick,
-  trackBookNowClick } from
+  trackWhatsAppClick } from
 '../utils/analytics';
 interface HeroSectionProps {
   title: string;
@@ -118,14 +116,6 @@ export function HeroSection({
             }}
             className="flex flex-wrap gap-4">
 
-              <a
-              href="/contact"
-              onClick={() => trackBookNowClick('hero')}
-              className="inline-flex items-center gap-2 bg-brand-primary hover:bg-blue-600 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors shadow-lg shadow-brand-primary/25">
-
-                <CalendarIcon className="w-5 h-5" />
-                Book Now
-              </a>
               <a
               href="tel:+94707699620"
               onClick={() => trackCallClick()}

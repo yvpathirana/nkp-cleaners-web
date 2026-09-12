@@ -1,32 +1,28 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import {
   BuildingIcon,
   HomeIcon,
-  SparklesIcon,
-  FactoryIcon,
-  CarIcon,
-  LeafIcon,
   ShieldCheckIcon,
   ClockIcon,
   UsersIcon,
   AwardIcon,
   WashingMachineIcon,
-  WindIcon } from
-'lucide-react';
+  PackageIcon,
+  GemIcon,
+  HardHatIcon
+} from 'lucide-react';
 import { SEOHead } from '../components/SEOHead';
+import { routeSeoData } from '../seo/seoConfig';
 import { HeroSection } from '../components/HeroSection';
 import { ServiceCard } from '../components/ServiceCard';
 import { ColorCodingSystem } from '../components/ColorCodingSystem';
 import { TestimonialsSection } from '../components/TestimonialsSection';
+import { AreasWeServe } from '../components/AreasWeServe';
 import { BookingCTA } from '../components/BookingCTA';
 export function HomePage() {
   return (
     <>
-      <SEOHead
-        title="Professional Cleaning Services in Sri Lanka"
-        description="NKP Cleaners offers premium residential, commercial, industrial, and specialized cleaning services in Sri Lanka. Shine Beyond the Surface."
-        keywords="cleaning services Sri Lanka, office cleaning, home cleaning, pressure washing, carpet cleaning, NKP Cleaners" />
+      <SEOHead data={routeSeoData['/']} />
 
 
       {/* Hero */}
@@ -72,40 +68,40 @@ export function HomePage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <ServiceCard
-              title="Office Cleaning"
-              description="Keep your workspace pristine and productive with our regular and deep office cleaning services."
-              icon={BuildingIcon}
-              link="/office-cleaning" />
+              title="Deep Cleaning Packages"
+              description="Three tailored tiers — Essential, Premium, and Medical Grade Sanitization — for complete home hygiene."
+              icon={PackageIcon}
+              link="/deep-cleaning-packages" />
 
             <ServiceCard
-              title="Home & Apartment Cleaning"
-              description="Thorough residential cleaning including general, deep, and move-in/move-out services."
+              title="House & Apartment Cleaning"
+              description="General, deep, kitchen, washroom, glass, floor, and sanitization cleaning for homes and apartments."
               icon={HomeIcon}
               link="/home-cleaning" />
 
             <ServiceCard
-              title="Pressure Washing"
-              description="Restore driveways, walls, roofs, and outdoor surfaces to their original condition."
-              icon={WindIcon}
-              link="/pressure-washing" />
+              title="Office & Commercial Cleaning"
+              description="Regular and deep cleaning for offices, common areas, staircases, lifts, glass partitions, and exterior perimeters."
+              icon={BuildingIcon}
+              link="/office-cleaning" />
 
             <ServiceCard
-              title="Industrial Cleaning"
-              description="Heavy-duty cleaning for warehouses, factories, and machinery with professional equipment."
-              icon={FactoryIcon}
-              link="/services" />
+              title="Floor Restoration & Polishing"
+              description="Red cement and titanium floor deep cleaning, wax/polish application, and machine polishing."
+              icon={GemIcon}
+              link="/floor-restoration" />
 
             <ServiceCard
-              title="Carpet & Sofa Cleaning"
-              description="Deep extraction cleaning that removes stains, allergens, and odors from upholstery."
+              title="Post-Construction Cleaning"
+              description="Construction dust removal, debris clearing, paint and adhesive removal, and handover-ready finishing."
+              icon={HardHatIcon}
+              link="/post-construction-cleaning" />
+
+            <ServiceCard
+              title="Sofa, Mattress & Carpet Cleaning"
+              description="Dry vacuuming, chemical treatment, wet extraction, steam sanitization, and deep stain removal."
               icon={WashingMachineIcon}
-              link="/services" />
-
-            <ServiceCard
-              title="Green Cleaning"
-              description="Eco-friendly cleaning solutions that are safe for your family, pets, and the environment."
-              icon={LeafIcon}
-              link="/services" />
+              link="/sofa-mattress-cleaning" />
 
           </div>
         </div>
@@ -135,7 +131,7 @@ export function HomePage() {
               <div className="w-12 h-12 bg-brand-primary/10 rounded-xl flex items-center justify-center mx-auto mb-3">
                 <ClockIcon className="w-6 h-6 text-brand-primary" />
               </div>
-              <p className="font-heading text-3xl font-bold text-white">5+</p>
+              <p className="font-heading text-3xl font-bold text-white">2+</p>
               <p className="text-gray-400 text-sm mt-1">Years Experience</p>
             </motion.div>
 
@@ -224,6 +220,9 @@ export function HomePage() {
 
       {/* Testimonials */}
       <TestimonialsSection />
+
+      {/* Areas We Serve */}
+      <AreasWeServe />
 
       {/* Booking CTA */}
       <BookingCTA />

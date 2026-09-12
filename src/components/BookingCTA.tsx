@@ -1,12 +1,9 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { CalendarIcon, PhoneIcon, MessageCircleIcon } from 'lucide-react';
+import { PhoneIcon, MessageCircleIcon } from 'lucide-react';
 import {
   trackCallClick,
-  trackWhatsAppClick,
-  trackBookNowClick } from
+  trackWhatsAppClick } from
 '../utils/analytics';
-import { Link } from 'react-router-dom';
 export function BookingCTA() {
   return (
     <section className="relative bg-gradient-to-br from-brand-primary to-blue-700 overflow-hidden">
@@ -35,23 +32,14 @@ export function BookingCTA() {
           }}>
 
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
-            Book Your Cleaning Service Today
+            Contact Us Today
           </h2>
           <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
-            Get a spotless space with our professional cleaning team. Fast,
-            reliable, and affordable.
+            Talk to our team for a customized quotation based on your space and
+            cleaning needs.
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link
-              to="/contact"
-              onClick={() => trackBookNowClick('cta_section')}
-              className="inline-flex items-center gap-2 bg-white text-brand-primary hover:bg-blue-50 font-semibold px-8 py-4 rounded-xl transition-colors shadow-lg">
-
-              <CalendarIcon className="w-5 h-5" />
-              Book Now
-            </Link>
-
             <a
               href="tel:+94707699620"
               onClick={() => trackCallClick()}

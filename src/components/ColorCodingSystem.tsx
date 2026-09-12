@@ -1,4 +1,4 @@
-import React from 'react';
+import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import {
   ShieldCheckIcon,
@@ -12,7 +12,7 @@ interface ColorCode {
   bgColor: string;
   borderColor: string;
   label: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   description: string;
 }
 export function ColorCodingSystem() {

@@ -1,23 +1,22 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import {
   CheckCircleIcon,
-  BuildingIcon,
   ClockIcon,
   ShieldCheckIcon,
   SparklesIcon,
-  UsersIcon } from
+  UsersIcon,
+  ArrowUpIcon,
+  LayoutGridIcon } from
 'lucide-react';
 import { SEOHead } from '../components/SEOHead';
+import { routeSeoData } from '../seo/seoConfig';
 import { HeroSection } from '../components/HeroSection';
+import { AreasWeServe } from '../components/AreasWeServe';
 import { BookingCTA } from '../components/BookingCTA';
 export function OfficeCleaningPage() {
   return (
     <>
-      <SEOHead
-        title="Office Cleaning Services"
-        description="Professional office cleaning services by NKP Cleaners. Regular and deep cleaning for offices, co-working spaces, and corporate environments in Sri Lanka."
-        keywords="office cleaning, commercial cleaning, workplace cleaning, Sri Lanka, NKP Cleaners" />
+      <SEOHead data={routeSeoData['/office-cleaning']} />
 
 
       <HeroSection
@@ -63,49 +62,49 @@ export function OfficeCleaningPage() {
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700">
-                    Desk, table, and workstation cleaning & sanitization
+                    Office area cleaning — workstations, desks, cabins, and meeting rooms
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700">
-                    Floor vacuuming, mopping, and polishing
+                    Common-area cleaning — lobbies, waiting areas, and corridors
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700">
-                    Restroom deep cleaning and sanitization
+                    Staircase cleaning and handrail disinfection
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700">
-                    Kitchen and break room cleaning
+                    Lift cleaning and sanitization — cabins, buttons, and handrails
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700">
-                    Window and glass surface cleaning
+                    Glass surfaces, windows, and partition cleaning
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700">
-                    Trash removal and waste management
+                    Perimeter and outdoor common-area cleaning
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700">
-                    Reception and lobby area maintenance
+                    Customized commercial cleaning plans
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
                   <CheckCircleIcon className="w-5 h-5 text-brand-primary shrink-0 mt-0.5" />
                   <span className="text-gray-700">
-                    Air freshening and odor control
+                    Daily, weekly, and monthly recurring cleaning contracts
                   </span>
                 </li>
               </ul>
@@ -130,34 +129,34 @@ export function OfficeCleaningPage() {
               className="grid grid-cols-2 gap-4">
 
               <div className="bg-gray-50 rounded-2xl p-6 text-center">
-                <BuildingIcon className="w-8 h-8 text-brand-primary mx-auto mb-3" />
+                <LayoutGridIcon className="w-8 h-8 text-brand-primary mx-auto mb-3" />
                 <p className="font-heading font-semibold text-gray-900 text-sm">
-                  All Office Sizes
+                  Office Areas
                 </p>
-                <p className="text-gray-500 text-xs mt-1">Small to corporate</p>
-              </div>
-              <div className="bg-gray-50 rounded-2xl p-6 text-center">
-                <ClockIcon className="w-8 h-8 text-brand-primary mx-auto mb-3" />
-                <p className="font-heading font-semibold text-gray-900 text-sm">
-                  Flexible Scheduling
-                </p>
-                <p className="text-gray-500 text-xs mt-1">
-                  Daily, weekly, monthly
-                </p>
-              </div>
-              <div className="bg-gray-50 rounded-2xl p-6 text-center">
-                <ShieldCheckIcon className="w-8 h-8 text-brand-primary mx-auto mb-3" />
-                <p className="font-heading font-semibold text-gray-900 text-sm">
-                  Color Coded
-                </p>
-                <p className="text-gray-500 text-xs mt-1">Hygiene standards</p>
+                <p className="text-gray-500 text-xs mt-1">Workstations & cabins</p>
               </div>
               <div className="bg-gray-50 rounded-2xl p-6 text-center">
                 <UsersIcon className="w-8 h-8 text-brand-primary mx-auto mb-3" />
                 <p className="font-heading font-semibold text-gray-900 text-sm">
-                  Trained Staff
+                  Common Areas
                 </p>
-                <p className="text-gray-500 text-xs mt-1">Professional team</p>
+                <p className="text-gray-500 text-xs mt-1">
+                  Lobbies, corridors, lifts
+                </p>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-6 text-center">
+                <ArrowUpIcon className="w-8 h-8 text-brand-primary mx-auto mb-3" />
+                <p className="font-heading font-semibold text-gray-900 text-sm">
+                  Staircases
+                </p>
+                <p className="text-gray-500 text-xs mt-1">Steps & handrails</p>
+              </div>
+              <div className="bg-gray-50 rounded-2xl p-6 text-center">
+                <ClockIcon className="w-8 h-8 text-brand-primary mx-auto mb-3" />
+                <p className="font-heading font-semibold text-gray-900 text-sm">
+                  Recurring Contracts
+                </p>
+                <p className="text-gray-500 text-xs mt-1">Daily/weekly/monthly</p>
               </div>
             </motion.div>
           </div>
@@ -315,6 +314,9 @@ export function OfficeCleaningPage() {
           </div>
         </div>
       </section>
+
+      {/* Areas We Serve */}
+      <AreasWeServe serviceName="Office cleaning" />
 
       {/* Benefits */}
       <section className="bg-white py-20">
